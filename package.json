@@ -1,0 +1,23 @@
+{
+  "name": "foobar-dashboard-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel *.html",
+    "deletedist": "rm -rf ./dist/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laur507p/eksamen-foobar-dashboard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laur507p/eksamen-foobar-dashboard/issues"
+  },
+  "homepage": "https://github.com/laur507p/eksamen-foobar-dashboard#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
