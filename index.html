@@ -7,14 +7,55 @@
     <title>FooBar Dashboard</title>
   </head>
   <body>
-    <main class="parent">
-      <div class="comp1 comp"></div>
+    <template class="order-template">
+      <article class="order-container">
+        <h2 class="order-no"></h2>
+        <ul class="beers"></ul>
+        <p class="table-no"></p>
+      </article>
+    </template>
+
+    <template class="storage-template">
+      <li class="storage-item">
+        <p class="storage-name"></p>
+        <div class="storage-meter"></div>
+      </li>
+    </template>
+
+    <main id="grid">
+      <div class="comp1 comp">
+        <h1>FooBar</h1>
+      </div>
+
       <div class="comp2 comp"></div>
-      <div class="comp3 comp"></div>
-      <div class="comp4 comp"></div>
-      <div class="comp5 comp"></div>
-      <div class="comp6 comp"></div>
-      <div class="comp7 comp"></div>
+
+      <div class="comp3 comp">
+        <h2>Orders</h2>
+        <div class="orders-container"></div>
+      </div>
+
+      <div class="comp4 comp">
+        <h2>Current Shift</h2>
+      </div>
+
+      <div class="comp5 comp">
+        <h2 class="stock-title">Stock status</h2>
+
+        <ul class="storage-container"></ul>
+      </div>
+
+      <div class="comp6 comp">
+        <h2>Best Sellers</h2>
+      </div>
+
+      <div class="comp7 comp">
+        <iframe
+          src="https://open.spotify.com/embed/playlist/37i9dQZF1DWTJ7xPn4vNaz"
+          style="border: 0; width: 100%; height: 100%"
+          allowfullscreen
+          allow="encrypted-media"
+        ></iframe>
+      </div>
     </main>
     <script src="script.js"></script>
   </body>

@@ -1,0 +1,13 @@
+.order-container {
+  border: 1px solid black;
+  height: 100%;
+
+  flex-basis: 100%;
+}
+
+.orders-container {
+  display: flex;
+
+  height: 88%;
+  overflow-x: auto;
+}

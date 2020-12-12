@@ -36,13 +36,13 @@ function loadJSON(url, callback) {
 }
 
 function getData(data) {
-  console.log("data is shown");
+  console.log("data is loaded");
   console.log(data);
 
   // send data to components
   showQueue(data.queue);
 
-  showOrders(data.queue);
+  showOrders(data.queue, data.serving);
 
   showStockStatus(data.storage);
 }
@@ -54,8 +54,63 @@ function showQueue(queueData) {
   queue.innerHTML = queueData.length;
 }
 
-function showOrders(orderData) {
+function showOrders(orderData, servingData) {
   //show orders data
+  const template = document.querySelector(".order-template");
+  let container = document.querySelector(".orders-container");
+
+  // clear container
+  container.innerHTML = "";
+
+  // orders that are being served
+  servingData.forEach((order) => {
+    let klon = template.cloneNode(true).content;
+    klon.querySelector(".beers").innerHTML = "";
+    klon.querySelector(".order-no").textContent = order.id;
+    klon.querySelector(".order-no").style.color = "red";
+
+    order.order.forEach((beer) => {
+      let beerInOrder = document.createElement("li");
+      beerInOrder.textContent = beer;
+      klon.querySelector(".beers").appendChild(beerInOrder);
+    });
+    container.appendChild(klon);
+  });
+
+  // orders in the queue
+  orderData.forEach((order) => {
+    let klon = template.cloneNode(true).content;
+    klon.querySelector(".beers").innerHTML = "";
+    klon.querySelector(".order-no").textContent = order.id;
+
+    order.order.forEach((beer) => {
+      console.log("beers" + beer);
+
+      let beerInOrder = document.createElement("li");
+      beerInOrder.textContent = beer;
+      klon.querySelector(".beers").appendChild(beerInOrder);
+    });
+
+    container.appendChild(klon);
+  });
 }
 
-function showStockStatus(storageData) {}
+function showStockStatus(storageData) {
+  console.log(storageData);
+
+  const template = document.querySelector(".storage-template");
+  let container = document.querySelector(".storage-container");
+
+  // clear container
+  container.innerHTML = "";
+
+  // orders in the queue
+  storageData.forEach((item) => {
+    let klon = template.cloneNode(true).content;
+    klon.querySelector(".storage-name").textContent = item.name;
+    klon.querySelector(".storage-meter").style.width = item.amount + "0%";
+    klon.querySelector(".storage-meter").textContent = item.amount + " kegs";
+
+    container.appendChild(klon);
+  });
+}
