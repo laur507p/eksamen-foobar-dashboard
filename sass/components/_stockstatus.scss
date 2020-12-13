@@ -1,10 +1,35 @@
 // storage
 .storage-meter {
-  background-color: blue;
   height: 20px;
   color: white;
+  position: relative;
+  background-color: blue;
+  transition: 1s;
+}
+
+.inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: blue;
+  width: 50px;
+  height: 20px;
+}
+
+.outer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 100%;
+  border: 1px solid red;
 }
 
 .storage-item {
   margin: 10px 0;
+}
+
+.storage-container {
+  overflow-y: scroll;
+  height: 95%;
 }

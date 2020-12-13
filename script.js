@@ -85,12 +85,10 @@ function showOrders(orderData, servingData) {
 
     order.order.forEach((beer) => {
       console.log("beers" + beer);
-
       let beerInOrder = document.createElement("li");
       beerInOrder.textContent = beer;
       klon.querySelector(".beers").appendChild(beerInOrder);
     });
-
     container.appendChild(klon);
   });
 }
@@ -108,8 +106,16 @@ function showStockStatus(storageData) {
   storageData.forEach((item) => {
     let klon = template.cloneNode(true).content;
     klon.querySelector(".storage-name").textContent = item.name;
+
+    // klon.querySelector(".inner").textContent = item.amount + "0%";
+    // klon.querySelector(".outer").textContent = item.amount + "0%";
     klon.querySelector(".storage-meter").style.width = item.amount + "0%";
-    klon.querySelector(".storage-meter").textContent = item.amount + " kegs";
+
+    if (item.amount === 1) {
+      klon.querySelector(".storage-meter").textContent = item.amount + " keg";
+    } else {
+      klon.querySelector(".storage-meter").textContent = item.amount + " kegs";
+    }
 
     container.appendChild(klon);
   });
