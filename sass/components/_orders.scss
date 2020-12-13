@@ -1,13 +1,14 @@
+// parent container
+.orders-container {
+  display: flex;
+  height: 88%;
+  overflow-x: scroll;
+}
+
+// child container
 .order-container {
   border: 1px solid black;
   height: 100%;
-
-  flex-basis: 100%;
-}
-
-.orders-container {
-  display: flex;
-
-  height: 88%;
-  overflow-x: auto;
+  min-width: 400px;
+  margin-right: 10px;
 }
