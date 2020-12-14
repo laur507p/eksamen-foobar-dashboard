@@ -28,18 +28,10 @@ h2 {
   font-style: normal;
   background-color: vars.$blue;
   padding: 15px;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: vars.$white;
 }
 
-// .title-container {
-//   position: relative;
-//   background-color: blue;
-//   width: 100%;
-//   height: 20px;
-//   padding: 0;
-// }
-
-// .title-container h2 {
-//   position: absolute;
-// }
+.comp-title {
+  text-transform: uppercase;
+}
