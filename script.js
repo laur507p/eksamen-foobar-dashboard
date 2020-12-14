@@ -48,8 +48,6 @@ function getData(data) {
   // send data to components
   showQueue(data.queue);
 
-  showOrders(data.queue, data.serving);
-
   showStockStatus(data.storage);
 
   // test
@@ -58,6 +56,8 @@ function getData(data) {
   // orders that have been converted to the right format
   const convertedOrders = convertOrder(data.queue);
   console.log("CONVERTED", convertedOrders);
+
+  showOrders(data.queue, data.serving, convertedOrders);
 }
 
 // function that converts orders to the right format and returns array
@@ -86,11 +86,12 @@ function showQueue(queueData) {
 }
 
 // gets data from getData and displays the orders
-function showOrders(orderData, servingData) {
+function showOrders(orderData, servingData, convertedOrders) {
   //show orders data
   const template = document.querySelector(".order-template");
   let container = document.querySelector(".orders-container");
-
+  let stringOrders = JSON.stringify(convertedOrders);
+  console.log(stringOrders);
   // clear container
   container.innerHTML = "";
 
@@ -100,13 +101,13 @@ function showOrders(orderData, servingData) {
     let randomNum = Math.floor(Math.random() * 10) + 1;
     klon.querySelector(".order-no").textContent = randomNum;
     klon.querySelector(".beers").innerHTML = "";
-    //klon.querySelector(".order-container").classList.add("fadeinout");
     klon.querySelector(".order-no").textContent = "Order " + order.id;
     klon.querySelector(".order-container").classList.add("serving-order");
 
-    order.order.forEach((beer) => {
+    convertedOrders.forEach((beer) => {
+      let stringOrders = JSON.stringify(beer);
       let beerInOrder = document.createElement("li");
-      beerInOrder.textContent = beer;
+      beerInOrder.textContent = stringOrders;
       klon.querySelector(".beers").appendChild(beerInOrder);
     });
     container.appendChild(klon);

@@ -3,3 +3,8 @@
 @use './sass/base/typography';
 @use './sass/layout/general';
 @use './sass/layout/components';
+
+.green-theme {
+  $blue: green;
+  $white: red;
+}
