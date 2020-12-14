@@ -57,6 +57,18 @@
   font-family: "vtf_misterpixelregular";
   font-weight: normal;
   font-style: normal;
+  text-transform: uppercase;
+}
+
+.beers li {
+  font-family: pt-mono, monospace;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.9rem;
+}
+
+.beers {
+  margin-top: 5px;
 }
 
 // ---------QUEUE-----------
