@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 @use './sass/base/variables' as vars;
 
->>>>>>> 1ae544974695d6d13db2dc4003c2da5fb6676d7e
 .parent {
   display: grid;
   grid-template-columns: repeat(11, 1fr);
@@ -26,112 +22,16 @@
 }
 .comp3 {
   grid-area: 1 / 3 / 4 / 12;
-=======
-@use './sass/base/variables' as vars;
-
-body {
-  height: 100vh;
-  width: 100vw;
-  padding: 40px;
-  background-image: url("images/bg-img-placeholder.jpg");
-  background-size: cover;
-}
-
-#grid {
-  display: grid;
-  grid-template-columns: repeat(11, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  grid-column-gap: 15px;
-  grid-row-gap: 15px;
-  background-color: vars.$white;
-  height: 100%;
-  width: 100%;
-  border: 5px solid vars.$blue;
-  border-top: 25px solid vars.$blue;
-  padding: 15px;
-}
-
-.comp {
-  background-color: vars.$white;
-  border: 4px solid vars.$blue;
-}
-.comp1 {
-  grid-area: 1 / 1 / 2 / 3;
-  border: none;
-}
-.comp2 {
-  grid-area: 2 / 1 / 4 / 3;
-  background-color: vars.$blue;
-}
-.comp3 {
-  grid-area: 1 / 3 / 4 / 12;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
->>>>>>> 815bd192319f64cd106527c0f11b51b0b1e4c5f0
 }
 .comp4 {
   grid-area: 4 / 1 / 9 / 3;
 }
 .comp5 {
   grid-area: 4 / 3 / 9 / 6;
-<<<<<<< HEAD
-=======
-  display: flex;
-  flex-direction: column;
-  height: 100%;
->>>>>>> 815bd192319f64cd106527c0f11b51b0b1e4c5f0
 }
 .comp6 {
   grid-area: 4 / 6 / 9 / 9;
 }
 .comp7 {
   grid-area: 4 / 9 / 9 / 12;
-<<<<<<< HEAD
-=======
-  padding: 0;
-}
-
-// theme select
-#theme-select {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: vars.$blue;
-  border: none;
-  outline: none;
-  padding: 5px;
-  color: vars.$white;
-  font-family: "vtf_misterpixelregular";
-  font-weight: normal;
-  font-style: normal;
-  appearance: none;
-  font-size: 1.1;
-  border-radius: 0;
-  -webkit-appearance: none;
-}
-
-// animations
-
-.fadeinout {
-  animation-name: fadeinout_kf;
-  animation-duration: 10s;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-}
-
-@keyframes fadeinout_kf {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
->>>>>>> 815bd192319f64cd106527c0f11b51b0b1e4c5f0
 }
