@@ -1,1 +1,41 @@
+<<<<<<< HEAD
 // how heading and p tags should behave
+=======
+@use './sass/base/variables' as vars;
+
+// how heading and p tags should behave
+
+@font-face {
+  font-family: "vtf_misterpixelregular";
+  src: url("fonts/mister_pixel_regular-webfont.woff2") format("woff2"), url("fonts/mister_pixel_regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "vtf_misterpixeltools";
+  src: url("fonts/mister_pixel_tools-webfont.woff2") format("woff2"), url("fonts/mister_pixel_tools-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1 {
+  font-family: "vtf_misterpixelregular";
+  font-weight: normal;
+  font-style: normal;
+}
+
+h2 {
+  font-family: "vtf_misterpixelregular";
+  font-weight: normal;
+  font-style: normal;
+  background-color: vars.$blue;
+  padding: 15px;
+  font-size: 1.5rem;
+  color: vars.$white;
+}
+
+.comp-title {
+  text-transform: uppercase;
+}
+>>>>>>> 815bd192319f64cd106527c0f11b51b0b1e4c5f0
