@@ -1,15 +1,19 @@
+@use './sass/base/variables' as vars;
+
 // parent container
 .orders-container {
   display: flex;
-  height: 88%;
   overflow-x: scroll;
+  flex: 1;
+  transition: 1s;
 }
 
 // child container
 .order-container {
-  border: 1px solid black;
-  height: 100%;
+  background-color: vars.$blue;
+  color: vars.$white;
+
   min-width: 400px;
-  margin-right: 10px;
+  margin: 15px 0 15px 15px;
   transition: 1s;
 }

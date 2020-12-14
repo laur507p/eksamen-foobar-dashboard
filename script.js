@@ -35,6 +35,7 @@ function loadJSON(url, callback) {
     });
 }
 
+// delegateing function that sends data to other functions
 function getData(data) {
   console.log("data is loaded");
   console.log(data);
@@ -47,6 +48,7 @@ function getData(data) {
   showStockStatus(data.storage);
 }
 
+// gets data from getData and displays how many are in the queue
 function showQueue(queueData) {
   console.log(queueData);
 
@@ -54,6 +56,7 @@ function showQueue(queueData) {
   queue.innerHTML = queueData.length;
 }
 
+// gets data from getData and displays the orders
 function showOrders(orderData, servingData) {
   //show orders data
   const template = document.querySelector(".order-template");
@@ -66,6 +69,7 @@ function showOrders(orderData, servingData) {
   servingData.forEach((order) => {
     let klon = template.cloneNode(true).content;
     klon.querySelector(".beers").innerHTML = "";
+    klon.querySelector(".order-container").classList.add("fadeinout");
     klon.querySelector(".order-no").textContent = order.id;
     klon.querySelector(".order-no").style.color = "red";
 

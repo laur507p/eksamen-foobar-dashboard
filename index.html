@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="styles.scss" />
     <title>FooBar Dashboard</title>
   </head>
-  <body>
+  <body class="green-theme">
     <template class="order-template">
       <article class="order-container">
-        <h2 class="order-no"></h2>
+        <h3 class="order-no"></h3>
         <ul class="beers"></ul>
         <p class="table-no"></p>
       </article>
@@ -25,9 +25,17 @@
       </li>
     </template>
 
+    <select name="theme" id="theme-select">
+      <option value="default" disabled>Select theme</option>
+      <option value="theme1" selected>Theme1</option>
+      <option value="theme2" selected>Theme2</option>
+      <option value="theme3" selected>Theme3</option>
+    </select>
+
     <main id="grid">
       <div class="comp1 comp">
         <h1>FooBar</h1>
+        <p>19:21 | 12/12/20</p>
       </div>
 
       <div class="comp2 comp"></div>
@@ -47,7 +55,9 @@
       </div>
 
       <div class="comp6 comp">
-        <h2>Best Sellers</h2>
+        <div class="title-container">
+          <h2>Best Sellers</h2>
+        </div>
       </div>
 
       <div class="comp7 comp">
