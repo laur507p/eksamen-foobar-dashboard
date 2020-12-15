@@ -28,6 +28,8 @@ function start() {
   document.querySelectorAll(".shift-item").forEach((item) => {
     item.addEventListener("click", shiftFocus);
   });
+
+  document.querySelector("#theme-select").addEventListener("change", themeSelect);
 }
 
 // loads data
@@ -45,19 +47,23 @@ function getData(data) {
   console.log("data is loaded");
   console.log(data);
 
+  // refresh the time and date
+  setDateAndTime();
+
   // send data to components
   showQueue(data.queue);
 
   showStockStatus(data.storage);
 
-  // test
-  console.log(data.queue);
-
   // orders that have been converted to the right format
   const convertedOrders = convertOrder(data.queue);
+  // console.log(convertedOrders[x]);
   console.log("CONVERTED", convertedOrders);
-
   showOrders(data.queue, data.serving, convertedOrders);
+
+  setBartender(data.bartenders);
+
+  setBartenderIcon();
 }
 
 // function that converts orders to the right format and returns array
@@ -82,7 +88,7 @@ function convertOrder(data) {
 // gets data from getData and displays how many are in the queue
 function showQueue(queueData) {
   // show queue number
-  document.querySelector(".queue-number").textContent = queueData.length;
+  document.querySelector("#queue-number").textContent = queueData.length;
 }
 
 // gets data from getData and displays the orders
@@ -90,8 +96,7 @@ function showOrders(orderData, servingData, convertedOrders) {
   //show orders data
   const template = document.querySelector(".order-template");
   let container = document.querySelector(".orders-container");
-  let stringOrders = JSON.stringify(convertedOrders);
-  console.log(stringOrders);
+
   // clear container
   container.innerHTML = "";
 
@@ -99,15 +104,14 @@ function showOrders(orderData, servingData, convertedOrders) {
   servingData.forEach((order) => {
     let klon = template.cloneNode(true).content;
     let randomNum = Math.floor(Math.random() * 10) + 1;
-    klon.querySelector(".order-no").textContent = randomNum;
+    klon.querySelector(".table-no").textContent = randomNum;
     klon.querySelector(".beers").innerHTML = "";
     klon.querySelector(".order-no").textContent = "Order " + order.id;
     klon.querySelector(".order-container").classList.add("serving-order");
 
-    convertedOrders.forEach((beer) => {
-      let stringOrders = JSON.stringify(beer);
+    order.order.forEach((beer) => {
       let beerInOrder = document.createElement("li");
-      beerInOrder.textContent = stringOrders;
+      beerInOrder.textContent = beer;
       klon.querySelector(".beers").appendChild(beerInOrder);
     });
     container.appendChild(klon);
@@ -118,7 +122,8 @@ function showOrders(orderData, servingData, convertedOrders) {
     let klon = template.cloneNode(true).content;
     klon.querySelector(".beers").innerHTML = "";
     klon.querySelector(".order-no").textContent = "Order " + order.id;
-    //klon.querySelector(".order-container").classList.add("fadeinout");
+    let randomNum = Math.floor(Math.random() * 10) + 1;
+    klon.querySelector(".table-no").textContent = randomNum;
 
     order.order.forEach((beer) => {
       let beerInOrder = document.createElement("li");
@@ -128,6 +133,13 @@ function showOrders(orderData, servingData, convertedOrders) {
     container.appendChild(klon);
   });
 }
+
+// convertedOrders.forEach((beer) => {
+//   let stringOrders = JSON.stringify(beer);
+//   let beerInOrder = document.createElement("li");
+//   beerInOrder.textContent = stringOrders;
+//   klon.querySelector(".beers").appendChild(beerInOrder);
+// });
 
 function showStockStatus(storageData) {
   // console.log(storageData);
@@ -155,6 +167,76 @@ function showStockStatus(storageData) {
   });
 }
 
+function setBartender(bartenders) {
+  console.log("setbartender");
+
+  // gets all order containers
+  const orderContainers = document.querySelectorAll(".order-container");
+
+  orderContainers.forEach((container) => {
+    // checks if the order is being served
+    if (container.classList.contains("serving-order")) {
+      // gets the order number from the html
+      const orderNo = container.querySelector(".order-no").textContent;
+
+      // get the number at the back of the string
+      const orderNumber = orderNo.substring(6);
+
+      bartenders.forEach((bartender) => {
+        // get what order number each bartender is serving from the bartender data
+        const servingOrderNo = bartender.servingCustomer;
+
+        // checks if the order number from the html and the order number from the bartenders data match
+        // sets the correct class with what bartender has that order
+        if (orderNumber == servingOrderNo) {
+          if (bartender.name == "Peter") {
+            container.classList.add("peter");
+          } else if (bartender.name == "Jonas") {
+            container.classList.add("jonas");
+          } else if (bartender.name == "Dannie") {
+            container.classList.add("dannie");
+          }
+        }
+      });
+    }
+  });
+}
+
+function setBartenderIcon() {
+  const orderContainers = document.querySelectorAll(".order-container");
+
+  orderContainers.forEach((order) => {
+    const icon = document.createElement("img");
+    icon.classList.add("bartender-icon");
+
+    if (order.classList.contains("peter")) {
+      console.log("add peter icon");
+      // add peter icon
+      icon.src = "/pl.8c708645.svg";
+    } else if (order.classList.contains("jonas")) {
+      console.log("add jonas icon");
+      // add jonas icon
+      icon.src = "/jh.0d7324a1.svg";
+    } else if (order.classList.contains("dannie")) {
+      console.log("add dannie icon");
+      // add dannie icon
+      icon.src = "/dv.81297e79.svg";
+    }
+    order.appendChild(icon);
+  });
+}
+
+function themeSelect() {
+  console.log("theme select", this.value);
+  if (this.value === "80s") {
+    document.documentElement.className = "theme-80s";
+  } else if (this.value === "vortex") {
+    document.documentElement.className = "theme-vortex";
+  } else if (this.value === "pastel") {
+    document.documentElement.className = "theme-pastel";
+  }
+}
+
 function shiftFocus() {
   console.log("shiftfocus");
   document.querySelectorAll(".shift-item").forEach((item) => {
@@ -162,4 +244,32 @@ function shiftFocus() {
   });
 
   this.classList.add("selected");
+}
+
+function setDateAndTime() {
+  let currentTime = getTime();
+  let currentDate = getDate();
+  document.querySelector(".time").textContent = currentTime;
+  document.querySelector(".date").textContent = currentDate;
+}
+
+function getDate() {
+  let date = new Date();
+  let currentDate = date.getDate();
+  let month = date.getMonth();
+  let currentMonth = month + 1;
+  let year = date.getFullYear();
+  return currentDate + "/" + currentMonth + "/" + year;
+}
+
+function getTime() {
+  let date = new Date();
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
+  console.log("minutes", minutes.length);
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  let currentTime = hours + ":" + minutes;
+  return currentTime;
 }

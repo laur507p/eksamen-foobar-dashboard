@@ -1,4 +1,5 @@
-@use './sass/base/variables' as vars;
+@import "./sass/base/mixins";
+@import "./sass/base/themes";
 
 // ---------HEADER-----------
 // date and time
@@ -12,9 +13,9 @@
 }
 
 .main-title {
-  color: vars.$blue;
   font-size: 2.1rem;
   padding-left: 2px;
+  @include theme-aware("color", "main-color");
 }
 
 // ---------ORDERS-----------
@@ -29,28 +30,29 @@
 
 .orders-container::-webkit-scrollbar-track {
   -webkit-box-shadow: none;
-  background-color: #ffffff;
+  @include theme-aware("background-color", "light-color");
   border-radius: 10px;
 }
 
 .orders-container::-webkit-scrollbar {
   width: 15px;
-  background-color: #f5f5f5;
+  @include theme-aware("background-color", "light-color");
 }
 
 .orders-container::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: vars.$blue;
+  @include theme-aware("background-color", "main-color");
 }
 
 // child container
 .order-container {
-  background-color: vars.$blue;
-  color: vars.$white;
   min-width: 300px;
   margin: 15px 0 15px 15px;
   transition: 1s;
   padding: 10px;
+  position: relative;
+  @include theme-aware("background-color", "main-color");
+  @include theme-aware("color", "light-color");
 }
 
 .order-no {
@@ -71,35 +73,75 @@
   margin-top: 5px;
 }
 
+.bartender-icon {
+  width: 35px;
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  z-index: 10000;
+}
+
+.checkmark {
+  font-family: "vtf_misterpixeltools";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  font-size: 2.5rem;
+  height: 50%;
+  width: 22%;
+  text-align: center;
+  border: 4px solid;
+  @include theme-aware("background-color", "light-color");
+  @include theme-aware("color", "main-color");
+  @include theme-aware("border-color", "main-color");
+}
+
+.table-no {
+  font-family: "vtf_misterpixelregular";
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2.5rem;
+  text-align: center;
+  height: 50%;
+  width: 22%;
+  border: 4px solid;
+  border-bottom: none;
+  @include theme-aware("background-color", "light-color");
+  @include theme-aware("color", "main-color");
+  @include theme-aware("border-color", "main-color");
+}
+
 // ---------QUEUE-----------
-.queue-number {
+#queue-number {
   font-size: 4rem;
   text-align: center;
-  margin-top: -10px;
+  margin-top: -30px;
   background-color: transparent;
+  @include theme-aware("color", "light-color");
 }
 
 .queue-text {
-  color: vars.$white;
   font-family: pt-mono, monospace;
   font-weight: 400;
   font-style: normal;
   text-align: center;
   margin-top: -10px;
+  @include theme-aware("color", "light-color");
 }
 
 // ---------STORAGE-----------
 .storage-meter {
   height: 25px;
-  color: vars.$white;
   position: relative;
-  background-color: vars.$blue;
   transition: 1s;
   padding: 5px;
   font-family: pt-mono, monospace;
   font-weight: 400;
   font-style: normal;
   font-size: 0.8rem;
+  @include theme-aware("color", "light-color");
+  @include theme-aware("background-color", "main-color");
 }
 
 // .inner {
@@ -133,19 +175,18 @@
 
 .storage-container::-webkit-scrollbar-track {
   -webkit-box-shadow: none;
-  background-color: #ffffff;
   border-radius: 10px;
+  @include theme-aware("background-color", "light-color");
 }
 
 .storage-container::-webkit-scrollbar {
   width: 15px;
-  background-color: #f5f5f5;
+  @include theme-aware("background-color", "light-color");
 }
 
 .storage-container::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  //-webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0);
-  background-color: vars.$blue;
+  @include theme-aware("background-color", "main-color");
 }
 
 .storage-name {
@@ -153,21 +194,21 @@
   font-weight: 400;
   font-style: normal;
   text-transform: uppercase;
-  color: vars.$black;
   margin-bottom: 3px;
   font-size: 1.2rem;
+  @include theme-aware("color", "dark-color");
 }
 
 // ---------BEST SELLERS-----------
 
 #best-sellers li {
   width: 100%;
-  background-color: vars.$blue;
   margin-bottom: 15px;
-  color: vars.$white;
   padding: 10px;
   display: flex;
   align-items: center;
+  @include theme-aware("color", "light-color");
+  @include theme-aware("background-color", "main-color");
 }
 
 #best-sellers li p {
@@ -205,29 +246,32 @@
 
 #current-shift li p {
   display: inline;
-  color: vars.$black;
   font-family: "vtf_misterpixelregular";
   font-weight: normal;
   font-style: normal;
-  padding-left: 20px;
+  padding-left: 15px;
   font-size: 1rem;
+  @include theme-aware("color", "dark-color");
 }
 
 #current-shift li img {
   display: inline;
-  width: 55px;
+  width: 45px;
 }
 
 #current-shift {
   padding: 5px;
 }
+
 #current-shift .shift-item {
-  border: 4px solid vars.$white;
+  @include theme-aware("border-color", "light-color");
+  border: 4px solid;
   cursor: pointer;
   transition: border 0.3s;
 }
 
 #current-shift .selected {
-  border: 4px solid vars.$blue;
+  @include theme-aware("border-color", "main-color");
+  border: 4px solid;
   transition: border 0.3s;
 }

@@ -3,8 +3,5 @@
 @use './sass/base/typography';
 @use './sass/layout/general';
 @use './sass/layout/components';
-
-.green-theme {
-  $blue: green;
-  $white: red;
-}
+@import "./sass/base/mixins";
+@import "./sass/base/themes";

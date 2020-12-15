@@ -1,4 +1,5 @@
-@use './sass/base/variables' as vars;
+@import "./sass/base/mixins";
+@import "./sass/base/themes";
 
 // how heading and p tags should behave
 
@@ -26,10 +27,10 @@ h2 {
   font-family: "vtf_misterpixelregular";
   font-weight: normal;
   font-style: normal;
-  background-color: vars.$blue;
+  @include theme-aware("background-color", "main-color");
   padding: 15px;
   font-size: 1.5rem;
-  color: vars.$white;
+  @include theme-aware("color", "light-color");
 }
 
 .comp-title {

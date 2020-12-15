@@ -1,11 +1,18 @@
-@use './sass/base/variables' as vars;
+@import "./sass/base/mixins";
+@import "./sass/base/themes";
 
 body {
   height: 100vh;
   width: 100vw;
   padding: 40px;
   background-image: url("images/bg-img-placeholder.jpg");
+  @include theme-aware("background-image", "theme-background-img");
+  background-position: bottom;
   background-size: cover;
+}
+
+.hide {
+  display: none;
 }
 
 #grid {
@@ -14,17 +21,19 @@ body {
   grid-template-rows: repeat(8, 1fr);
   grid-column-gap: 15px;
   grid-row-gap: 15px;
-  background-color: vars.$white;
+  @include theme-aware("background-color", "light-color");
   height: 100%;
   width: 100%;
-  border: 5px solid vars.$blue;
-  border-top: 25px solid vars.$blue;
+  border: 5px solid;
+  border-top: 25px solid;
+  @include theme-aware("border-color", "main-color");
   padding: 15px;
 }
 
 .comp {
-  background-color: vars.$white;
-  border: 4px solid vars.$blue;
+  @include theme-aware("background-color", "light-color");
+  border: 4px solid;
+  @include theme-aware("border-color", "main-color");
 }
 .comp1 {
   grid-area: 1 / 1 / 2 / 3;
@@ -32,7 +41,11 @@ body {
 }
 .comp2 {
   grid-area: 2 / 1 / 4 / 3;
-  background-color: vars.$blue;
+  @include theme-aware("background-color", "main-color");
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
 }
 .comp3 {
   grid-area: 1 / 3 / 4 / 12;
@@ -62,11 +75,11 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: vars.$blue;
+  @include theme-aware("background-color", "secondary-color");
   border: none;
   outline: none;
   padding: 5px;
-  color: vars.$white;
+  @include theme-aware("color", "theme-select");
   font-family: "vtf_misterpixelregular";
   font-weight: normal;
   font-style: normal;

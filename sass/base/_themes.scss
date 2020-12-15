@@ -1,0 +1,26 @@
+$themes: (
+  80s: (
+    main-color: #1e00ff,
+    secondary-color: #1e00ff,
+    light-color: #ffffff,
+    dark-color: #000000,
+    theme-select: #ffffff,
+    theme-background-img: url("images/bg-img-placeholder.jpg"),
+  ),
+  vortex: (
+    main-color: #020202,
+    secondary-color: #79ffa8,
+    light-color: #79ffa8,
+    dark-color: #020202,
+    theme-select: #020202,
+    theme-background-img: url("images/vortex.png"),
+  ),
+  pastel: (
+    main-color: pink,
+    secondary-color: rgb(194, 228, 255),
+    light-color: rgb(255, 255, 255),
+    dark-color: #020202,
+    theme-select: #020202,
+    theme-background-img: url("images/vortex.png"),
+  ),
+);
