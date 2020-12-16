@@ -26,7 +26,7 @@ body {
   width: 100%;
   border: 5px solid;
   border-top: 25px solid;
-  @include theme-aware("border-color", "main-color");
+  @include theme-aware("border-color", "window-border-color");
   padding: 15px;
 }
 
@@ -52,6 +52,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
 }
 .comp4 {
   grid-area: 4 / 1 / 9 / 3;

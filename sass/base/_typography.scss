@@ -30,7 +30,7 @@ h2 {
   @include theme-aware("background-color", "main-color");
   padding: 15px;
   font-size: 1.5rem;
-  @include theme-aware("color", "light-color");
+  @include theme-aware("color", "text-color");
 }
 
 .comp-title {
