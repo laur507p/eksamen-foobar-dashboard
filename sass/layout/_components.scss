@@ -28,6 +28,10 @@
   transition: 1s;
 }
 
+.order-container .beers {
+  overflow-y: scroll;
+  flex: 1;
+}
 .orders-container::-webkit-scrollbar-track {
   -webkit-box-shadow: none;
   @include theme-aware("background-color", "light-color");

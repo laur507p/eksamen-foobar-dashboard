@@ -3,13 +3,13 @@
 const link = "https://foobar-eksamen.herokuapp.com/";
 
 // components
-const header = document.querySelector(".comp1");
-const queue = document.querySelector(".comp2");
-const orders = document.querySelector(".comp3");
-const shift = document.querySelector(".comp4");
-const stockStatus = document.querySelector(".comp5");
-const bestSellers = document.querySelector(".comp6");
-const spotify = document.querySelector(".comp7");
+// const header = document.querySelector(".comp1");
+// const queue = document.querySelector(".comp2");
+// const orders = document.querySelector(".comp3");
+// const shift = document.querySelector(".comp4");
+// const stockStatus = document.querySelector(".comp5");
+// const bestSellers = document.querySelector(".comp6");
+// const spotify = document.querySelector(".comp7");
 
 window.addEventListener("load", start);
 
@@ -34,7 +34,6 @@ function start() {
 
 // loads data
 function loadJSON(url, callback) {
-  console.log("Update data");
   fetch(url)
     .then((response) => response.json())
     .then((jsonData) => {
@@ -52,37 +51,28 @@ function getData(data) {
 
   // send data to components
   showQueue(data.queue);
-
   showStockStatus(data.storage);
+  showOrders(data.queue, data.serving);
 
-  // orders that have been converted to the right format
-  const convertedOrders = convertOrder(data.queue);
-  // console.log(convertedOrders[x]);
-  console.log("CONVERTED", convertedOrders);
-  showOrders(data.queue, data.serving, convertedOrders);
-
+  // set which bartender is serving each order
   setBartender(data.bartenders);
 
+  // set the icon for each bartender
   setBartenderIcon();
 }
 
-// function that converts orders to the right format and returns array
-function convertOrder(data) {
-  let convertedOrders = [];
-
-  data.forEach((order) => {
-    let oldOrder = order.order;
-    let newOrder = {};
-    oldOrder.forEach((beer) => {
-      if (newOrder[beer]) {
-        newOrder[beer]++;
-      } else {
-        newOrder[beer] = 1;
-      }
-    });
-    convertedOrders.push(newOrder);
+// function that converts orders to the right format and returns converted order
+function convertSingleOrder(order) {
+  let oldOrder = order;
+  let newOrder = {};
+  oldOrder.forEach((beer) => {
+    if (newOrder[beer]) {
+      newOrder[beer]++;
+    } else {
+      newOrder[beer] = 1;
+    }
   });
-  return convertedOrders;
+  return newOrder;
 }
 
 // gets data from getData and displays how many are in the queue
@@ -92,7 +82,7 @@ function showQueue(queueData) {
 }
 
 // gets data from getData and displays the orders
-function showOrders(orderData, servingData, convertedOrders) {
+function showOrders(orderData, servingData) {
   //show orders data
   const template = document.querySelector(".order-template");
   let container = document.querySelector(".orders-container");
@@ -109,11 +99,20 @@ function showOrders(orderData, servingData, convertedOrders) {
     klon.querySelector(".order-no").textContent = "Order " + order.id;
     klon.querySelector(".order-container").classList.add("serving-order");
 
-    order.order.forEach((beer) => {
+    const newOrder = convertSingleOrder(order.order);
+    const joined = Object.entries(newOrder).join("x");
+    const splitOrder = joined.split("x");
+
+    splitOrder.forEach((orderItem) => {
+      const number = orderItem.substring(orderItem.indexOf(",") + 1);
+      const beer = orderItem.substring(0, orderItem.indexOf(","));
+      const order = number + "x " + beer;
+
       let beerInOrder = document.createElement("li");
-      beerInOrder.textContent = beer;
+      beerInOrder.textContent = order;
       klon.querySelector(".beers").appendChild(beerInOrder);
     });
+
     container.appendChild(klon);
   });
 
@@ -125,21 +124,23 @@ function showOrders(orderData, servingData, convertedOrders) {
     let randomNum = Math.floor(Math.random() * 10) + 1;
     klon.querySelector(".table-no").textContent = randomNum;
 
-    order.order.forEach((beer) => {
+    const newOrder = convertSingleOrder(order.order);
+    const joined = Object.entries(newOrder).join("x");
+    const splitOrder = joined.split("x");
+
+    splitOrder.forEach((orderItem) => {
+      const number = orderItem.substring(orderItem.indexOf(",") + 1);
+      const beer = orderItem.substring(0, orderItem.indexOf(","));
+      const order = number + "x " + beer;
+
       let beerInOrder = document.createElement("li");
-      beerInOrder.textContent = beer;
+      beerInOrder.textContent = order;
       klon.querySelector(".beers").appendChild(beerInOrder);
     });
+
     container.appendChild(klon);
   });
 }
-
-// convertedOrders.forEach((beer) => {
-//   let stringOrders = JSON.stringify(beer);
-//   let beerInOrder = document.createElement("li");
-//   beerInOrder.textContent = stringOrders;
-//   klon.querySelector(".beers").appendChild(beerInOrder);
-// });
 
 function showStockStatus(storageData) {
   // console.log(storageData);
@@ -209,18 +210,20 @@ function setBartenderIcon() {
     const icon = document.createElement("img");
     icon.classList.add("bartender-icon");
 
+    // finde sourcen fra DOM fordi parcel laver filnavne om
+    const dSource = document.querySelector(".d-bartender-icon").getAttribute("src");
+    const pSource = document.querySelector(".p-bartender-icon").getAttribute("src");
+    const jSource = document.querySelector(".j-bartender-icon").getAttribute("src");
+
     if (order.classList.contains("peter")) {
-      console.log("add peter icon");
       // add peter icon
-      icon.src = "/pl.8c708645.svg";
+      icon.src = pSource;
     } else if (order.classList.contains("jonas")) {
-      console.log("add jonas icon");
       // add jonas icon
-      icon.src = "/jh.0d7324a1.svg";
+      icon.src = jSource;
     } else if (order.classList.contains("dannie")) {
-      console.log("add dannie icon");
       // add dannie icon
-      icon.src = "/dv.81297e79.svg";
+      icon.src = dSource;
     }
     order.appendChild(icon);
   });
@@ -266,7 +269,6 @@ function getTime() {
   let date = new Date();
   let minutes = date.getMinutes();
   let hours = date.getHours();
-  console.log("minutes", minutes.length);
   if (minutes < 10) {
     minutes = "0" + minutes;
   }
