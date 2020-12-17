@@ -133,6 +133,7 @@ function showOrders(orderData, servingData) {
   });
 }
 
+// display stock status
 function showStockStatus(storageData) {
   // console.log(storageData);
 
@@ -158,7 +159,7 @@ function showStockStatus(storageData) {
     container.appendChild(klon);
   });
 }
-
+// set bartender class on order containers that are being served
 function setBartender(bartenders) {
   console.log("setbartender");
 
@@ -194,6 +195,7 @@ function setBartender(bartenders) {
   });
 }
 
+// set the corresponding bartender icon
 function setBartenderIcon() {
   const orderContainers = document.querySelectorAll(".order-container");
 
@@ -220,6 +222,7 @@ function setBartenderIcon() {
   });
 }
 
+// set theme
 function themeSelect() {
   console.log("theme select", this.value);
   if (this.value === "80s") {
@@ -231,6 +234,7 @@ function themeSelect() {
   }
 }
 
+// til at skifte bartender
 function shiftFocus() {
   console.log("shiftfocus");
   document.querySelectorAll(".shift-item").forEach((item) => {
