@@ -2,15 +2,6 @@
 
 const link = "https://foobar-eksamen.herokuapp.com/";
 
-// components
-// const header = document.querySelector(".comp1");
-// const queue = document.querySelector(".comp2");
-// const orders = document.querySelector(".comp3");
-// const shift = document.querySelector(".comp4");
-// const stockStatus = document.querySelector(".comp5");
-// const bestSellers = document.querySelector(".comp6");
-// const spotify = document.querySelector(".comp7");
-
 window.addEventListener("load", start);
 
 function start() {
@@ -269,6 +260,9 @@ function getTime() {
   let date = new Date();
   let minutes = date.getMinutes();
   let hours = date.getHours();
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
   if (minutes < 10) {
     minutes = "0" + minutes;
   }

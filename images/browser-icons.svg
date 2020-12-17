@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="403" height="166" viewBox="0 0 403 166">
+  <defs>
+    <clipPath id="clip-browser_icons">
+      <rect width="403" height="166"/>
+    </clipPath>
+  </defs>
+  <g id="browser_icons" data-name="browser icons" clip-path="url(#clip-browser_icons)">
+    <g id="Ellipse_8" data-name="Ellipse 8" transform="translate(30 19)" fill="none" stroke="#fff" stroke-width="20">
+      <circle cx="62.5" cy="62.5" r="62.5" stroke="none"/>
+      <circle cx="62.5" cy="62.5" r="52.5" fill="none"/>
+    </g>
+    <g id="Group_274" data-name="Group 274" transform="translate(247.012 25.706)">
+      <line id="Line_65" data-name="Line 65" y1="107.848" x2="107.848" transform="translate(0 0)" fill="none" stroke="#fff" stroke-width="20"/>
+      <line id="Line_66" data-name="Line 66" x2="107.848" y2="107.848" transform="translate(0 0)" fill="none" stroke="#fff" stroke-width="20"/>
+    </g>
+  </g>
+</svg>

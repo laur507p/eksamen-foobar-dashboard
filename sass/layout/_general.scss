@@ -14,6 +14,13 @@ body {
 .hide {
   display: none;
 }
+#browser-icons {
+  position: absolute;
+  top: -19px;
+  left: 2px;
+  width: 37px;
+  z-index: 100000;
+}
 
 #grid {
   display: grid;
@@ -28,6 +35,7 @@ body {
   border-top: 25px solid;
   @include theme-aware("border-color", "window-border-color");
   padding: 15px;
+  position: relative;
 }
 
 .comp {
